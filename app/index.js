@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import ToolTip from "./ToolTip";
 
 class App extends React.Component {
   render() {
     return (
       <div>
         <h1>Hello World!</h1>
+        <ToolTip text="hello">Hover over me for tool tip</ToolTip>
       </div>
     );
   }
