@@ -1,5 +1,5 @@
 import React from "react";
-import withHover from "./withHover";
+import HoverContainer from "./HoverContainer";
 const styles = {
   container: {
     position: "relative",
@@ -21,14 +21,17 @@ const styles = {
     fontSize: "14px"
   }
 };
-// HOC PATTERN
-function Tooltip({ text, children, hovering }) {
+
+// RENDER PROPERS PATTERN
+export default function Tooltip2({ text, children }) {
   return (
-    <div style={styles.container}>
-      {hovering === true && <div style={styles.tooltip}>{text}</div>}
-      {children}
-    </div>
+    <HoverContainer>
+      {hovering => (
+        <div style={styles.container}>
+          {hovering === true && <div style={styles.tooltip}>{text}</div>}
+          {children}
+        </div>
+      )}
+    </HoverContainer>
   );
 }
-
-export default withHover(Tooltip, "hovering");
