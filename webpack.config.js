@@ -2,10 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./app/index.js",
+  entry: "./app/app.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js"
+    filename: "app_bundle.js",
+
+    // Tells webpack where to fallback too, see devServer comment below
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -18,5 +21,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "app/index.html"
     })
-  ]
+  ],
+
+  /* when going "/" in browser react and router hasn't been loaded. Below, this tells 
+  webpack instead of trying to handle it like a server just redirect all request to index,
+  which will load React + Router and handle it */
+  devServer: {
+    historyApiFallback: true
+  }
 };
