@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./app/app.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, ""),
     filename: "app_bundle.js",
 
     // Tells webpack where to fallback too, see devServer comment below
