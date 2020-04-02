@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clear-build-cache": "rm -rf .cache/ dist/",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "build": "NODE_ENV='production' webpack",
+    "build-for-windows": "set NODE_ENV=production&&webpack"
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
   },
   "dependencies": {
     "babel-plugin-dynamic-import": "^1.0.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "query-string": "^6.11.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -16,7 +16,8 @@ module.exports = {
       { test: /\.css$/, use: ["style-loader", "css-loader"] }
     ]
   },
-  mode: "development",
+  // Gets process.env.NODE_ENV from npm scripts, when webpack in prod mode will do minification
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: "app/index.html"
