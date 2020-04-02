@@ -6,7 +6,6 @@ import PageClassField from "./PageClassField";
 import PageTooltip from "./PageTooltip";
 import PageQuery from "./PageQuery";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Loading from "./Loading";
 import { ThemeProvider } from "./ThemeContext";
 import Nav from "./Nav";
 
@@ -42,7 +41,7 @@ class App extends React.Component {
 
             {/* Code splitting - need this whenever we have code splitting, whenever the dynamically loaded component takes to long,
             whatever is passed to fallback will load */}
-            <React.Suspense fallback={<Loading />}>
+            <React.Suspense fallback={() => <h1>Loading...</h1>}>
               {/* Switch makes it so only the first path that matches will render a component we still need
             exact on the '/' path because otherwise /theme won't ever get rendered*/}
               <Switch>
