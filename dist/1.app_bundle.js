@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{28:function(n,e,t){"use strict";t.r(e),t.d(e,"default",(function(){return r}));var i=t(0),a=t.n(i);function r(){return a.a.createElement("div",null," This was dynamically imported")}}}]);
