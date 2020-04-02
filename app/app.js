@@ -2,11 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import PageTheme from "./PageTheme";
+import PageClassField from "./PageClassField";
 import PageTooltip from "./PageTooltip";
 import PageQuery from "./PageQuery";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Loading from "./Loading";
 import { ThemeProvider } from "./ThemeContext";
 import Nav from "./Nav";
+
+// Code splitting ex.
+// arrow function here returns a promise that needs to resolve with a particular module / component
+// This will not be imported until it is needed, i.e. a route that matches this component
+const PageDynamic = React.lazy(() => import("./PageDynamicImport"));
 
 class App extends React.Component {
   constructor(props) {
@@ -33,21 +40,29 @@ class App extends React.Component {
           <ThemeProvider value={this.state}>
             <Nav />
 
-            {/* Switch makes it so only the first path that matches will render a component we still need
+            {/* Code splitting - need this whenever we have code splitting, whenever the dynamically loaded component takes to long,
+            whatever is passed to fallback will load */}
+            <React.Suspense fallback={<Loading />}>
+              {/* Switch makes it so only the first path that matches will render a component we still need
             exact on the '/' path because otherwise /theme won't ever get rendered*/}
-            <Switch>
-              {/* 
+              <Switch>
+                {/* 
                 Router wraps these component so it can pass info about the route to the component(internally via context)
                 We need exact so otherwise "/theme" which has a partial match will also render "/" 
                 */}
-              <Route exact path="/" component={() => <h1>Hello world</h1>} />
-              <Route path="/theme" component={PageTheme} state={this.state} />
-              <Route path="/tooltip" component={PageTooltip} />
-              <Route path="/query" component={PageQuery} />
+                <Route exact path="/" component={() => <h1>Hello world</h1>} />
+                <Route path="/theme" component={PageTheme} state={this.state} />
+                <Route path="/tooltip" component={PageTooltip} />
+                <Route path="/query" component={PageQuery} />
 
-              {/* If none of those above match  */}
-              <Route render={() => <h1>404 Not found</h1>} />
-            </Switch>
+                <Route path="/class-field" component={PageClassField} />
+
+                <Route path="/dynamic-import" component={PageDynamic} />
+
+                {/* If none of those above match  */}
+                <Route render={() => <h1>404 Not found</h1>} />
+              </Switch>
+            </React.Suspense>
           </ThemeProvider>
         </Router>
       </div>

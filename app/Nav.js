@@ -25,6 +25,14 @@ export default function Nav() {
         Tooltip
       </NavLink>
 
+      <NavLink to="/class-field" activeStyle={activeStyle} style={style}>
+        Class field
+      </NavLink>
+
+      <NavLink to="/dynamic-import" activeStyle={activeStyle} style={style}>
+        Dynamic Import
+      </NavLink>
+
       {/* How to pass query string in path */}
       <NavLink
         activeStyle={activeStyle}
