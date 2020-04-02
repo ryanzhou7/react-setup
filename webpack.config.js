@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./app/app.js",
@@ -21,7 +22,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "app/index.html"
-    })
+    }),
+
+    /* Allow us to copy a file to our webpack output, we need this to tell netify where to redirect to
+    when we have deployed. This will copy the _redirects to the dist folder */
+    new CopyPlugin([{ from: "_redirects" }])
   ],
 
   /* when going "/" in browser react and router hasn't been loaded. Below, this tells 
