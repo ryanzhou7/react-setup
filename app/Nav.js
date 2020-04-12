@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const activeStyle = {
-  color: "rgb(187, 46, 31)"
+  color: "rgb(187, 46, 31)",
 };
 
 const style = {
-  marginRight: 10
+  marginRight: 10,
 };
 
 export default function Nav() {
@@ -31,6 +31,14 @@ export default function Nav() {
 
       <NavLink to="/dynamic-import" activeStyle={activeStyle} style={style}>
         Dynamic Import
+      </NavLink>
+
+      <NavLink to="/classic-component" activeStyle={activeStyle} style={style}>
+        Class component
+      </NavLink>
+
+      <NavLink to="/hooks" activeStyle={activeStyle} style={style}>
+        Hooks
       </NavLink>
 
       {/* How to pass query string in path */}

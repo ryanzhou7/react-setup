@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import PageTheme from "./PageTheme";
 import PageClassField from "./PageClassField";
+import PageClassic from "./PageClassic";
 import PageTooltip from "./PageTooltip";
 import PageQuery from "./PageQuery";
+import PageHooks from "./PageHooks";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "./ThemeContext";
 import Nav from "./Nav";
@@ -22,13 +24,13 @@ class App extends React.Component {
 
       // method consumers will use to toggle the theme
       toggleTheme: () => {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const { theme: prevTheme } = prevState;
           return {
-            theme: prevTheme === "light" ? "dark" : "light"
+            theme: prevTheme === "light" ? "dark" : "light",
           };
         });
-      }
+      },
     };
   }
 
@@ -54,9 +56,13 @@ class App extends React.Component {
                 <Route path="/tooltip" component={PageTooltip} />
                 <Route path="/query" component={PageQuery} />
 
+                <Route path="/classic-component" component={PageClassic} />
+
                 <Route path="/class-field" component={PageClassField} />
 
                 <Route path="/dynamic-import" component={PageDynamic} />
+
+                <Route path="/hooks" component={PageHooks} />
 
                 {/* If none of those above match  */}
                 <Route render={() => <h1>404 Not found</h1>} />
